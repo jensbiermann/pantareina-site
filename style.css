@@ -1,0 +1,69 @@
+/* Pantareina EOOD – Shared Styles */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0f1419;--ink-light:#3d4852;--ink-muted:#6b7785;--surface:#ffffff;--surface-warm:#f8f7f4;--surface-card:#f2f1ed;--accent:#1a5c3a;--accent-light:#e8f0eb;--border:#e2e0db;--font-body:'DM Sans',sans-serif;--font-display:'DM Serif Display',serif;--max-w:1120px;--section-py:clamp(64px,10vw,120px)}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--ink);background:var(--surface);line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+.text-center{text-align:center}
+.narrow{max-width:720px;margin-left:auto;margin-right:auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.2;letter-spacing:-0.01em}
+h2{font-size:clamp(1.75rem,4vw,2.5rem);margin-bottom:1rem}
+h3{font-size:clamp(1.1rem,2vw,1.35rem);margin-bottom:0.5rem}
+p{margin-bottom:1rem}p:last-child{margin-bottom:0}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.btn{display:inline-block;padding:14px 32px;font-family:var(--font-body);font-size:0.95rem;font-weight:600;border-radius:6px;text-decoration:none;transition:all 0.2s ease;cursor:pointer;border:none}
+.btn-primary{background:var(--ink);color:var(--surface)}.btn-primary:hover{background:var(--accent);text-decoration:none;transform:translateY(-1px)}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:var(--font-display);font-size:1.25rem;color:var(--ink);text-decoration:none;letter-spacing:0.02em}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:0.875rem;font-weight:500;color:var(--ink-light);text-decoration:none}
+.nav-links a:hover{color:var(--ink);text-decoration:none}
+.nav-cta{font-size:0.8rem!important;padding:8px 18px;background:var(--ink);color:var(--surface)!important;border-radius:5px;transition:background 0.2s}
+.nav-cta:hover{background:var(--accent)}
+.lang-switch{font-size:0.8rem;color:var(--ink-muted);border-left:1px solid var(--border);padding-left:16px;margin-left:8px}
+.lang-switch a{color:var(--ink-muted);font-weight:500}.lang-switch a:hover{color:var(--ink)}
+.lang-switch .active{color:var(--ink);font-weight:700}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:0.2s}
+@media(max-width:768px){.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--surface);flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.06)}.nav-links.open{display:flex}.lang-switch{border-left:none;padding-left:0;margin-left:0}}
+.hero{padding:clamp(80px,14vw,160px) 0 var(--section-py);text-align:center}
+.hero h1{font-size:clamp(2rem,5.5vw,3.5rem);margin-bottom:1.25rem;max-width:700px;margin-left:auto;margin-right:auto}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.2rem);color:var(--ink-light);max-width:600px;margin:0 auto 2rem;line-height:1.7}
+.problem{padding:var(--section-py) 0;background:var(--surface-warm)}
+.section-label{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:1rem}
+.problem-blocks{margin-top:2.5rem;display:grid;gap:2rem}
+.problem-blocks p{font-size:1.05rem;color:var(--ink-light);line-height:1.8}
+.packages{padding:var(--section-py) 0}
+.packages-grid{margin-top:3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:768px){.packages-grid{grid-template-columns:1fr}}
+.pkg-card{background:var(--surface-warm);border:1px solid var(--border);border-radius:10px;padding:36px 30px;display:flex;flex-direction:column}
+.pkg-name{font-family:var(--font-display);font-size:1.35rem;margin-bottom:0.75rem}
+.pkg-desc{font-size:0.95rem;color:var(--ink-light);line-height:1.75;flex-grow:1}
+.pkg-price{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:0.9rem;font-weight:600;color:var(--accent)}
+.sectors{padding:var(--section-py) 0;background:var(--surface-warm)}
+.sectors-grid{margin-top:3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:32px 40px}
+@media(max-width:900px){.sectors-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.sectors-grid{grid-template-columns:1fr}}
+.sector-item h3{font-family:var(--font-body);font-weight:600;font-size:1rem;margin-bottom:0.5rem;color:var(--ink)}
+.sector-item p{font-size:0.9rem;color:var(--ink-muted);line-height:1.7}
+.team{padding:var(--section-py) 0}
+.team-grid{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:700px){.team-grid{grid-template-columns:1fr;gap:40px}}
+.team-member h3{font-family:var(--font-display);font-size:1.4rem;margin-bottom:0.75rem}
+.team-role{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:1rem;display:block}
+.team-member p{font-size:0.95rem;color:var(--ink-light);line-height:1.8}
+.trust{padding:var(--section-py) 0;background:var(--ink);color:var(--surface)}
+.trust h2{color:var(--surface)}
+.trust-grid{margin-top:3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+@media(max-width:768px){.trust-grid{grid-template-columns:1fr;gap:32px}}
+.trust-item h3{font-family:var(--font-body);font-weight:600;font-size:1rem;margin-bottom:0.75rem;color:var(--surface)}
+.trust-item p{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.75}
+.final-cta{padding:var(--section-py) 0;text-align:center}
+.final-cta h2{max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:1.25rem}
+.final-cta .cta-body{font-size:1.05rem;color:var(--ink-light);max-width:520px;margin:0 auto 2rem}
+.final-cta .cta-secondary{display:block;margin-top:1rem;font-size:0.9rem;color:var(--ink-muted)}
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-size:0.8rem;color:var(--ink-muted)}
+footer a{color:var(--ink-muted)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
