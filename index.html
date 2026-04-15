@@ -8,395 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <style>
-    /* ── Reset & Variables ────────────────────────────── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --ink: #0f1419;
-      --ink-light: #3d4852;
-      --ink-muted: #6b7785;
-      --surface: #ffffff;
-      --surface-warm: #f8f7f4;
-      --surface-card: #f2f1ed;
-      --accent: #1a5c3a;
-      --accent-light: #e8f0eb;
-      --border: #e2e0db;
-      --font-body: 'DM Sans', sans-serif;
-      --font-display: 'DM Serif Display', serif;
-      --max-w: 1120px;
-      --section-py: clamp(64px, 10vw, 120px);
-    }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--ink);
-      background: var(--surface);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Utility ──────────────────────────────────────── */
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); }
-    .text-center { text-align: center; }
-    .text-muted { color: var(--ink-muted); }
-    .narrow { max-width: 720px; margin-left: auto; margin-right: auto; }
-
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
-    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 1rem; }
-    h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); margin-bottom: 0.5rem; }
-
-    p { margin-bottom: 1rem; }
-    p:last-child { margin-bottom: 0; }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ── Buttons ──────────────────────────────────────── */
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary {
-      background: var(--ink);
-      color: var(--surface);
-    }
-    .btn-primary:hover {
-      background: var(--accent);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--ink);
-      border: 1.5px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: var(--ink);
-      text-decoration: none;
-    }
-
-    /* ── Navigation ───────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 40px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ink-light);
-      text-decoration: none;
-    }
-    .nav-links a:hover { color: var(--ink); text-decoration: none; }
-    .nav-cta {
-      font-size: 0.8rem !important;
-      padding: 8px 18px;
-      background: var(--ink);
-      color: var(--surface) !important;
-      border-radius: 5px;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--accent); }
-
-    /* Mobile nav */
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: 0.2s; }
-
-    @media (max-width: 768px) {
-      .nav-toggle { display: block; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: var(--surface);
-        flex-direction: column;
-        padding: 24px;
-        gap: 16px;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      }
-      .nav-links.open { display: flex; }
-    }
-
-    /* ── Section 1: Hero ─────────────────────────────── */
-    .hero {
-      padding: clamp(80px, 14vw, 160px) 0 var(--section-py);
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5.5vw, 3.5rem);
-      margin-bottom: 1.25rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero .subtitle {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--ink-light);
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-
-    /* ── Section 2: Problem ──────────────────────────── */
-    .problem {
-      padding: var(--section-py) 0;
-      background: var(--surface-warm);
-    }
-    .problem-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .problem-blocks {
-      margin-top: 2.5rem;
-      display: grid;
-      gap: 2rem;
-    }
-    .problem-blocks p {
-      font-size: 1.05rem;
-      color: var(--ink-light);
-      line-height: 1.8;
-    }
-
-    /* ── Section 3: Packages ─────────────────────────── */
-    .packages {
-      padding: var(--section-py) 0;
-    }
-    .packages-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .packages-grid {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    @media (max-width: 768px) {
-      .packages-grid { grid-template-columns: 1fr; }
-    }
-    .pkg-card {
-      background: var(--surface-warm);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 36px 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    .pkg-name {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      margin-bottom: 0.75rem;
-    }
-    .pkg-desc {
-      font-size: 0.95rem;
-      color: var(--ink-light);
-      line-height: 1.75;
-      flex-grow: 1;
-    }
-    .pkg-price {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    /* ── Section 4: Sectors ──────────────────────────── */
-    .sectors {
-      padding: var(--section-py) 0;
-      background: var(--surface-warm);
-    }
-    .sectors-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .sectors-grid {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px 40px;
-    }
-    @media (max-width: 900px) { .sectors-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .sectors-grid { grid-template-columns: 1fr; } }
-
-    .sector-item h3 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--ink);
-    }
-    .sector-item p {
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      line-height: 1.7;
-    }
-
-    /* ── Section 5: Team ─────────────────────────────── */
-    .team {
-      padding: var(--section-py) 0;
-    }
-    .team-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .team-grid {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-    }
-    @media (max-width: 700px) {
-      .team-grid { grid-template-columns: 1fr; gap: 40px; }
-    }
-    .team-member h3 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-    }
-    .team-role {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .team-member p {
-      font-size: 0.95rem;
-      color: var(--ink-light);
-      line-height: 1.8;
-    }
-
-    /* ── Section 6: Trust ────────────────────────────── */
-    .trust {
-      padding: var(--section-py) 0;
-      background: var(--ink);
-      color: var(--surface);
-    }
-    .trust h2 { color: var(--surface); }
-    .trust-grid {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-    }
-    @media (max-width: 768px) { .trust-grid { grid-template-columns: 1fr; gap: 32px; } }
-    .trust-item h3 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-      color: var(--surface);
-    }
-    .trust-item p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.75;
-    }
-
-    /* ── Section 7: Final CTA ────────────────────────── */
-    .final-cta {
-      padding: var(--section-py) 0;
-      text-align: center;
-    }
-    .final-cta h2 {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 1.25rem;
-    }
-    .final-cta .cta-body {
-      font-size: 1.05rem;
-      color: var(--ink-light);
-      max-width: 520px;
-      margin: 0 auto 2rem;
-    }
-    .final-cta .cta-secondary {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-    }
-
-    /* ── Footer ──────────────────────────────────────── */
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--ink-muted);
-    }
-    footer a { color: var(--ink-muted); }
-
-    /* ── Fade-in on scroll ────────────────────────────── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ═══════════════ NAVIGATION ═══════════════ -->
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo">Pantareina</a>
@@ -408,11 +23,11 @@
       <a href="#packages">Services</a>
       <a href="#team">Team</a>
       <a href="#contact" class="nav-cta">Book Assessment</a>
+      <span class="lang-switch"><a href="/" class="active">EN</a> · <a href="/de/">DE</a> · <a href="/fr/">FR</a></span>
     </div>
   </div>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
   <div class="container">
     <h1>Your AI Is Live.<br>Is It Compliant?</h1>
@@ -421,10 +36,9 @@
   </div>
 </section>
 
-<!-- ═══════════════ PROBLEM ═══════════════ -->
 <section class="problem">
   <div class="container narrow fade-in">
-    <p class="problem-label text-center">The Compliance Clock Is Ticking</p>
+    <p class="section-label text-center">The Compliance Clock Is Ticking</p>
     <h2 class="text-center">Most companies know the AI Act exists.<br>Few know what it means for their product.</h2>
     <div class="problem-blocks">
       <p>The EU AI Act is not a future concern — it is law. Since August 2024, the regulation has been rolling out in phases. By August 2026, companies deploying high-risk AI systems must demonstrate full compliance: risk assessments, technical documentation, human oversight, and ongoing monitoring. Non-compliance carries fines of up to €35 million or 7 % of global revenue.</p>
@@ -434,125 +48,102 @@
   </div>
 </section>
 
-<!-- ═══════════════ PACKAGES ═══════════════ -->
 <section class="packages" id="packages">
   <div class="container fade-in">
-    <p class="packages-label text-center">How We Get You Compliant</p>
+    <p class="section-label text-center">How We Get You Compliant</p>
     <h2 class="text-center">Three packages. Zero ambiguity.</h2>
     <div class="packages-grid">
-
       <div class="pkg-card">
         <div class="pkg-name">AI Act Check</div>
         <p class="pkg-desc">Not sure if the AI Act applies to you? Start here. We classify your AI system against the EU AI Act risk categories, identify which obligations apply, and deliver a clear report with prioritised next steps. You know exactly where you stand — and what to do first.</p>
         <div class="pkg-price">From €1,500</div>
       </div>
-
       <div class="pkg-card">
         <div class="pkg-name">AI Act Ready</div>
         <p class="pkg-desc">Full compliance, documented and audit-proof. We produce the complete technical documentation required under Annex IV, build your risk management system, design your human oversight framework, and prepare your conformity declaration. When the regulator asks, you hand them a folder — not an excuse.</p>
         <div class="pkg-price">From €6,000</div>
       </div>
-
       <div class="pkg-card">
         <div class="pkg-name">AI Act Guard</div>
         <p class="pkg-desc">Compliance is not a one-time project — it is an ongoing obligation. Our monthly retainer keeps your documentation current, monitors regulatory changes, and provides quarterly compliance reviews. You focus on building your product. We make sure it stays legal.</p>
         <div class="pkg-price">From €1,500 / month</div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ SECTORS ═══════════════ -->
 <section class="sectors" id="sectors">
   <div class="container fade-in">
-    <p class="sectors-label text-center">Industries We Serve</p>
+    <p class="section-label text-center">Industries We Serve</p>
     <h2 class="text-center">Compliance where it matters most.</h2>
     <div class="sectors-grid">
-
       <div class="sector-item">
         <h3>Health AI &amp; Medical Devices</h3>
         <p>AI in healthcare is classified as high-risk under Annex III — and intersects with the Medical Devices Regulation. We bring a certified health practitioner's perspective to compliance, ensuring your product meets regulatory demands without losing clinical relevance.</p>
       </div>
-
       <div class="sector-item">
         <h3>Legal Tech</h3>
         <p>Contract analysis, legal research tools, and document automation — if your AI advises on legal matters, it falls under the AI Act's most scrutinised category. Our founder is a practising lawyer with two decades in software conception. He evaluates your product from both sides.</p>
       </div>
-
       <div class="sector-item">
         <h3>Finance &amp; Insurance</h3>
         <p>Credit scoring, algorithmic trading, insurance risk models — financial AI carries some of the highest regulatory stakes under both the AI Act and DORA. The penalties are severe, but so is the competitive advantage of early compliance.</p>
       </div>
-
       <div class="sector-item">
         <h3>Hospitality &amp; Travel</h3>
         <p>AI chatbots, booking recommendations, CRM profiling — hospitality companies often underestimate their transparency obligations under Article 50. If your AI interacts with guests, you need to disclose it. We help you get ahead of enforcement.</p>
       </div>
-
       <div class="sector-item">
         <h3>HR &amp; Recruitment</h3>
         <p>AI in hiring and performance evaluation is explicitly listed as high-risk. From CV screening to automated interview analysis — if your tool influences employment decisions, full compliance is mandatory.</p>
       </div>
-
       <div class="sector-item">
         <h3>Energy &amp; Infrastructure</h3>
         <p>AI systems managing energy grids, predictive maintenance, or resource allocation operate in a highly regulated space. The stakes are high, the budgets match, and the compliance requirements are non-negotiable.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ TEAM ═══════════════ -->
 <section class="team" id="team">
   <div class="container fade-in">
-    <p class="team-label text-center">Who We Are</p>
+    <p class="section-label text-center">Who We Are</p>
     <h2 class="text-center">Senior expertise. No delegation.</h2>
     <div class="team-grid">
-
       <div class="team-member">
         <h3>Jens</h3>
         <span class="team-role">The Compliance Architect</span>
         <p>German-licensed attorney with over twenty years of experience in software conception. Jens does not just understand the EU AI Act — he understands the systems it regulates. His career spans contract law, regulatory compliance, and the architecture of complex software products. As an expert reviewer for leading AI training platforms, he ensures that AI-generated legal content meets professional standards. For Pantareina's clients, he translates regulation into implementation — precise, actionable, and built to withstand audit.</p>
       </div>
-
       <div class="team-member">
         <h3>Andrea</h3>
         <span class="team-role">The Health AI Specialist</span>
         <p>Certified naturopath, health coach, and co-founder of Pantareina. Andrea brings the clinical perspective that purely technical consultants cannot offer. She reviews AI-generated health content for leading technology platforms, checking accuracy, safety, and alignment with established medical practice. For Health-Tech startups, she evaluates products from the practitioner's and the patient's point of view — bridging the gap between algorithm and bedside. Her focus: ensuring that AI in healthcare remains human-centred and genuinely beneficial.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ TRUST ═══════════════ -->
 <section class="trust">
   <div class="container fade-in">
     <h2 class="text-center">Why Pantareina</h2>
     <div class="trust-grid">
-
       <div class="trust-item">
         <h3>Two domains, one team.</h3>
         <p>The only EU AI Act consultancy that combines a licensed lawyer's regulatory expertise with a health practitioner's clinical judgment — the two fields the AI Act scrutinises most closely.</p>
       </div>
-
       <div class="trust-item">
         <h3>We review AI for a living.</h3>
         <p>Both founders serve as expert reviewers for leading AI training platforms, evaluating legal and medical AI outputs daily. We do not just advise on compliance — we work inside the models.</p>
       </div>
-
       <div class="trust-item">
         <h3>Built for startups, not bureaucracy.</h3>
         <p>A lean, remote-first boutique — no overhead, no billable-hour surprises. Fixed packages, clear deliverables, direct access to senior expertise. Every engagement is handled by the founders, not juniors.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ FINAL CTA ═══════════════ -->
 <section class="final-cta" id="contact">
   <div class="container fade-in">
     <h2>Not sure where your AI stands under the EU AI Act?</h2>
@@ -562,14 +153,12 @@
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="container">
-    <p>© 2026 Pantareina EOOD · Legal &amp; Health AI Consulting</p>
+    <p>&copy; 2026 Pantareina EOOD &middot; Legal &amp; Health AI Consulting</p>
   </div>
 </footer>
 
-<!-- ═══════════════ SCROLL ANIMATION ═══════════════ -->
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
